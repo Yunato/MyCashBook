@@ -31,7 +31,7 @@ class RecordListFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        val view = inflater?.inflate(R.layout.fragment_record_item_list, container, false)
+        val view = inflater?.inflate(R.layout.fragment_list, container, false)
 
         if (view is RecyclerView) {
             val context = view.getContext()

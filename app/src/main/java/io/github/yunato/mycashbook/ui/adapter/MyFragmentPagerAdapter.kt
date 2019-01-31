@@ -13,7 +13,7 @@ class MyFragmentPagerAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm) {
     override fun getPageTitle(position: Int): CharSequence = tabTitles[position]
 
     override fun getItem(position: Int): Fragment? {
-        return when (position){
+        return when (position) {
             0 -> InputRecordFragment.newInstance()
             1 -> RecordListFragment.newInstance()
             else -> null

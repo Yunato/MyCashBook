@@ -16,4 +16,5 @@
     <string name="nine_button">9</string>
     <string name="formula_text"/>
     <string name="del_button">DEL</string>
+    <string name="content_hint_text">摘要</string>
 </resources>

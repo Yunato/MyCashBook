@@ -19,8 +19,8 @@ class RecordDatabaseOpenHelper(mContext: Context) :
 
     override fun onCreate(db: SQLiteDatabase?) {
         db?.execSQL(
-                "CREATE TABLE" + DB_TABLE_NAME + " ( "
-                        + FIELD_ID + " INTEGER PRIMARY KEY AUTOINCREMENT "
+                "CREATE TABLE " + DB_TABLE_NAME + " ( "
+                        + FIELD_ID + " INTEGER PRIMARY KEY AUTOINCREMENT"
                         + ", " + FIELD_DATE + " INTEGER"
                         + ", " + FIELD_MONEY + " INTEGER"
                         + ", " + FIELD_CONTENT + " TEXT NOT NULL"

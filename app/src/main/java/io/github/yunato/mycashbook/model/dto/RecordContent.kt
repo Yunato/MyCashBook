@@ -6,8 +6,6 @@ object RecordContent {
 
     val ITEM_MAP: MutableMap<String, Record> = mutableMapOf()
 
-    private val COUNT = 25
-
     init {
 //        for (i in 1..COUNT) {
 //            addItem(createDummyItem(i))

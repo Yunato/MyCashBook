@@ -1,5 +1,6 @@
 package io.github.yunato.mycashbook.ui.fragment
 
+import android.app.AlertDialog
 import android.content.Context
 import android.os.Bundle
 import android.support.v4.app.Fragment
@@ -8,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import io.github.yunato.mycashbook.R
 import kotlinx.android.synthetic.main.fragment_input_record.*
+import java.util.*
 
 class InputRecordFragment : Fragment() {
 
@@ -79,11 +81,41 @@ class InputRecordFragment : Fragment() {
                 formula_text_view.text = ""
                 false
             }
+            plus_button.setOnClickListener {
+                var accept: Boolean = true
+                var message: String = ""
+                if(content_text_view.text.toString().isBlank()){
+                    accept = false
+                    message = "${message}摘要が入力されていません．"
+                }
+                if(content.isBlank() || content.contentEquals("0")){
+                    accept = false
+                    if(!message.isBlank()){
+                        message = "${message}\n"
+                    }
+                    message = "${message}金額が入力されていません．"
+                }
+                if (accept) {
+                    val calendar: Calendar = Calendar.getInstance()
+                    mListener?.onSave(calendar.timeInMillis,
+                            formula_text_view.text.toString().toLong(),
+                            content_text_view.text.toString(),
+                            plus_button.text.toString())
+                }else{
+                    AlertDialog.Builder(activity)
+                            .setMessage(message)
+                            .setPositiveButton("OK", null)
+                            .show()
+                }
+            }
         }
     }
 
     fun addNumToFormula(num: Int) {
         val numStr = num.toString()
+        if(numStr.contentEquals("0") && content.isEmpty()){
+            return
+        }
         if (formula_text_view.text.length < 10) {
             content = "$content$numStr"
             formula_text_view.text = String.format("%,d", Integer.parseInt(content))
@@ -105,6 +137,6 @@ class InputRecordFragment : Fragment() {
     }
 
     interface OnSaveListener {
-        fun onSave()
+        fun onSave(date: Long, money: Long, content: String, fluctuation: String)
     }
 }

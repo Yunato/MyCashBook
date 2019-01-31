@@ -2,9 +2,9 @@ package io.github.yunato.mycashbook.model.dto
 
 object RecordContent {
 
-    val ITEMs: MutableList<Record> = java.util.ArrayList()
+    val ITEMs: MutableList<Record> = mutableListOf()
 
-    val ITEM_MAP: MutableMap<String, Record> = java.util.HashMap()
+    val ITEM_MAP: MutableMap<String, Record> = mutableMapOf()
 
     private val COUNT = 25
 

@@ -5,10 +5,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import io.github.yunato.mycashbook.R
+import io.github.yunato.mycashbook.model.dto.Record
 import io.github.yunato.mycashbook.ui.fragment.RecordListFragment.OnSelectListener
-import io.github.yunato.mycashbook.ui.fragment.dummy.DummyContent.DummyItem
 
-class MyRecordRecyclerViewAdapter(private val mValues: List<DummyItem>, private val mListener: OnSelectListener?) : RecyclerView.Adapter<MyRecordRecyclerViewAdapter.ViewHolder>() {
+class MyRecordRecyclerViewAdapter(private val mValues: List<Record>, private val mListener: OnSelectListener?) : RecyclerView.Adapter<MyRecordRecyclerViewAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)
@@ -33,7 +33,7 @@ class MyRecordRecyclerViewAdapter(private val mValues: List<DummyItem>, private 
     inner class ViewHolder(val mView: View) : RecyclerView.ViewHolder(mView) {
 //        val mIdView: TextView
 //        val mContentView: TextView
-        var mItem: DummyItem? = null
+        var mItem: Record? = null
 
         init {
 //            mIdView = mView.findViewById(R.id.id) as TextView

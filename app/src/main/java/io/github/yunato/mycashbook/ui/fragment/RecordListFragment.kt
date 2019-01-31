@@ -8,11 +8,10 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-
 import io.github.yunato.mycashbook.R
+import io.github.yunato.mycashbook.model.dto.Record
+import io.github.yunato.mycashbook.model.dto.RecordContent
 import io.github.yunato.mycashbook.ui.adapter.MyRecordRecyclerViewAdapter
-import io.github.yunato.mycashbook.ui.fragment.dummy.DummyContent
-import io.github.yunato.mycashbook.ui.fragment.dummy.DummyContent.DummyItem
 
 class RecordListFragment : Fragment() {
 
@@ -37,7 +36,7 @@ class RecordListFragment : Fragment() {
             val context = view.getContext()
             val recyclerView = view
             recyclerView.layoutManager = LinearLayoutManager(context)
-            recyclerView.adapter = MyRecordRecyclerViewAdapter(DummyContent.ITEMS, mListener)
+            recyclerView.adapter = MyRecordRecyclerViewAdapter(RecordContent.ITEMs, mListener)
         }
         return view
     }
@@ -58,6 +57,6 @@ class RecordListFragment : Fragment() {
     }
 
     interface OnSelectListener {
-        fun onSelect(item: DummyItem)
+        fun onSelect(item: Record)
     }
 }

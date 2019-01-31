@@ -5,10 +5,10 @@ import android.support.design.widget.TabLayout
 import android.support.v4.view.ViewPager
 import android.support.v7.app.AppCompatActivity
 import io.github.yunato.mycashbook.R
+import io.github.yunato.mycashbook.model.dto.Record
 import io.github.yunato.mycashbook.ui.adapter.MyFragmentPagerAdapter
 import io.github.yunato.mycashbook.ui.fragment.InputRecordFragment
 import io.github.yunato.mycashbook.ui.fragment.RecordListFragment
-import io.github.yunato.mycashbook.ui.fragment.dummy.DummyContent
 
 class MainActivity : AppCompatActivity()
         , InputRecordFragment.OnSaveListener
@@ -30,6 +30,6 @@ class MainActivity : AppCompatActivity()
     override fun onSave() {
     }
 
-    override fun onSelect(item: DummyContent.DummyItem) {
+    override fun onSelect(item: Record) {
     }
 }

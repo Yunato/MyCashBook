@@ -1,7 +1,8 @@
-package io.github.yunato.mycashbook
+package io.github.yunato.mycashbook.ui.activity
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import io.github.yunato.mycashbook.R
 
 class MainActivity : AppCompatActivity() {
 

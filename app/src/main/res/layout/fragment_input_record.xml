@@ -1,7 +1,140 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-             xmlns:tools="http://schemas.android.com/tools"
-             android:layout_width="match_parent"
-             android:layout_height="match_parent"
-             tools:context="io.github.yunato.mycashbook.ui.fragment.InputRecordFragment">
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="io.github.yunato.mycashbook.ui.fragment.InputRecordFragment">
 
-</FrameLayout>
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+            <TextView
+                android:text="@string/formula_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/formula_text_view"
+                android:textAlignment="viewEnd"
+                android:textSize="24sp"/>
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+            <io.github.yunato.mycashbook.ui.view.ResizeButton
+                android:id="@+id/seven_button"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/seven_button"/>
+
+            <io.github.yunato.mycashbook.ui.view.ResizeButton
+                android:id="@+id/eight_button"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/eight_button"/>
+
+            <io.github.yunato.mycashbook.ui.view.ResizeButton
+                android:id="@+id/nine_button"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/nine_button"/>
+
+            <io.github.yunato.mycashbook.ui.view.ResizeButton
+                android:id="@+id/minus_button"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/minus_button"/>
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+            <io.github.yunato.mycashbook.ui.view.ResizeButton
+                android:id="@+id/four_button"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/four_button"/>
+
+            <io.github.yunato.mycashbook.ui.view.ResizeButton
+                android:id="@+id/five_button"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/five_button"/>
+
+            <io.github.yunato.mycashbook.ui.view.ResizeButton
+                android:id="@+id/six_button"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/six_button"/>
+
+            <io.github.yunato.mycashbook.ui.view.ResizeButton
+                android:id="@+id/plus_button"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/plus_button"/>
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+            <io.github.yunato.mycashbook.ui.view.ResizeButton
+                android:id="@+id/one_button"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/one_button"/>
+
+            <io.github.yunato.mycashbook.ui.view.ResizeButton
+                android:id="@+id/two_button"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/two_button"/>
+
+            <io.github.yunato.mycashbook.ui.view.ResizeButton
+                android:id="@+id/three_button"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/three_button"/>
+
+            <io.github.yunato.mycashbook.ui.view.ResizeButton
+                android:id="@+id/zero_button"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/zero_button"/>
+        </TableRow>
+    </TableLayout>
+</android.support.design.widget.CoordinatorLayout>

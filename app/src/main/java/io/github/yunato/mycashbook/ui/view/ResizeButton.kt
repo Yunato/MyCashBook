@@ -25,6 +25,7 @@ class ResizeButton : Button {
 
     private fun resize() {
         val MIN_TEXT_SIZE = 10f
+        val OFFSET = 50f
         val viewRectAngle = RectAngle(height.toFloat(), width.toFloat())
 
         while (viewRectAngle.isInclude(getTextRectAngle(mTextSize))) {
@@ -38,7 +39,7 @@ class ResizeButton : Button {
             }
             mTextSize -= 1f
         }
-        setTextSize(TypedValue.COMPLEX_UNIT_PX, mTextSize)
+        setTextSize(TypedValue.COMPLEX_UNIT_PX, mTextSize - OFFSET)
     }
 
     private fun getTextRectAngle(mTextSize: Float): RectAngle {

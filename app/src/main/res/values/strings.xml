@@ -1,6 +1,10 @@
 <resources>
     <string name="app_name">MyCashBook</string>
 
+    <string name="money_hint_text">所持金額を入力</string>
+    <string name="yen_text">円</string>
+    <string name="decide_text">決定</string>
+
     <!-- Input Record -->
     <string name="plus_button">収入</string>
     <string name="minus_button">支出</string>

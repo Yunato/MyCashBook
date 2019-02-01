@@ -1,5 +1,9 @@
 package io.github.yunato.mycashbook.ui.activity
 
+import android.app.Activity
+import android.content.Context
+import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.support.design.widget.TabLayout
 import android.support.v4.view.ViewPager
@@ -17,11 +21,23 @@ class MainActivity : AppCompatActivity()
         , RecordListFragment.OnSelectListener {
 
     lateinit private var recordDB: RecordDBAdapter
+    val REQUEST_MONEY: Int = 1
+    val PREF_MONEY: String = "money"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        val prefer: SharedPreferences = getSharedPreferences("money", Context.MODE_PRIVATE)
+        val money: Long = prefer.getLong(PREF_MONEY, -1)
+        if (money == -1L) {
+            MoneyActivity.intent(applicationContext).let { startActivityForResult(it, REQUEST_MONEY) }
+        } else {
+            createPage(money)
+        }
+    }
+
+    fun createPage(money: Long) {
         recordDB = RecordDBAdapter(this)
         val records = recordDB.getRecords()
         for (record in records) {
@@ -42,5 +58,19 @@ class MainActivity : AppCompatActivity()
     }
 
     override fun onSelect(item: Record) {
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == REQUEST_MONEY && resultCode == Activity.RESULT_OK) {
+            if (data != null) {
+                val money: Long = data.getLongExtra(MoneyActivity.EXTRA_MONEY, -1)
+                val prefer: SharedPreferences = getSharedPreferences("money", Context.MODE_PRIVATE)
+                val editor: SharedPreferences.Editor = prefer.edit()
+                editor.putLong(PREF_MONEY, money)
+                editor.apply()
+                createPage(money)
+            }
+        }
     }
 }

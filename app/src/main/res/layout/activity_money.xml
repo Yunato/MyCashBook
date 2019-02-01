@@ -14,29 +14,43 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1">
+        android:layout_height="wrap_content">
 
         <android.support.design.widget.TextInputLayout
             android:id="@+id/money_text_layout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <android.support.design.widget.TextInputEditText
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="5">
+
+            <io.github.yunato.mycashbook.ui.view.CurrencyEditText
                 android:id="@+id/money_edit_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/text_margin"
+                android:gravity="end|center"
                 android:hint="@string/money_hint_text"
+                android:inputType="number"
+                android:maxLength="10"
                 android:textSize="32sp"/>
 
         </android.support.design.widget.TextInputLayout>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:text="@string/yen_text"
+            android:textSize="32sp"/>
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:gravity="bottom">
 
         <Button
+            android:id="@+id/decide_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/decide_text"

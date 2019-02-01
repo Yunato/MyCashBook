@@ -4,9 +4,12 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import io.github.yunato.mycashbook.R
 import io.github.yunato.mycashbook.model.dto.Record
 import io.github.yunato.mycashbook.ui.fragment.RecordListFragment.OnSelectListener
+import java.text.SimpleDateFormat
+import java.util.*
 
 class MyRecordRecyclerViewAdapter(private val mValues: List<Record>, private val mListener: OnSelectListener?) : RecyclerView.Adapter<MyRecordRecyclerViewAdapter.ViewHolder>() {
 
@@ -18,8 +21,13 @@ class MyRecordRecyclerViewAdapter(private val mValues: List<Record>, private val
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.mItem = mValues[position]
-//        holder.mIdView.text = mValues[position].id
-//        holder.mContentView.text = mValues[position].content
+        val sdf: SimpleDateFormat = SimpleDateFormat("yy/MM/dd", Locale.JAPAN)
+        val date: Date = Date()
+        date.time = mValues[position].date
+        holder.mDateView.text = sdf.format(date)
+        holder.mContentView.text = mValues[position].content
+        holder.mFluctuationView.text = mValues[position].fluctuation
+        holder.mMoneyView.text = "${mValues[position].money}円"
 
         holder.mView.setOnClickListener {
             mListener?.onSelect(mValues[position])
@@ -31,13 +39,10 @@ class MyRecordRecyclerViewAdapter(private val mValues: List<Record>, private val
     }
 
     inner class ViewHolder(val mView: View) : RecyclerView.ViewHolder(mView) {
-//        val mIdView: TextView
-//        val mContentView: TextView
+        val mDateView: TextView = mView.findViewById(R.id.date_text_view) as TextView
+        val mContentView: TextView = mView.findViewById(R.id.content_text_view) as TextView
+        val mFluctuationView: TextView = mView.findViewById(R.id.fluctuation_text_view) as TextView
+        val mMoneyView: TextView = mView.findViewById(R.id.money_text_view) as TextView
         var mItem: Record? = null
-
-        init {
-//            mIdView = mView.findViewById(R.id.id) as TextView
-//            mContentView = mView.findViewById(R.id.content) as TextView
-        }
     }
 }

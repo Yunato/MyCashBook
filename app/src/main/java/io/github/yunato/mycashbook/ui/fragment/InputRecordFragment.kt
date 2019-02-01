@@ -82,32 +82,39 @@ class InputRecordFragment : Fragment() {
                 false
             }
             plus_button.setOnClickListener {
-                var accept: Boolean = true
-                var message: String = ""
-                if(content_text_view.text.toString().isBlank()){
-                    accept = false
-                    message = "${message}摘要が入力されていません．"
-                }
-                if(content.isBlank() || content.contentEquals("0")){
-                    accept = false
-                    if(!message.isBlank()){
-                        message = "${message}\n"
-                    }
-                    message = "${message}金額が入力されていません．"
-                }
-                if (accept) {
-                    val calendar: Calendar = Calendar.getInstance()
-                    mListener?.onSave(calendar.timeInMillis,
-                            formula_text_view.text.toString().toLong(),
-                            content_text_view.text.toString(),
-                            plus_button.text.toString())
-                }else{
-                    AlertDialog.Builder(activity)
-                            .setMessage(message)
-                            .setPositiveButton("OK", null)
-                            .show()
-                }
+                saveRecord(plus_button.text.toString())
             }
+            minus_button.setOnClickListener {
+                saveRecord(minus_button.text.toString())
+            }
+        }
+    }
+
+    fun saveRecord(str: String){
+        var accept: Boolean = true
+        var message: String = ""
+        if(content_text_view.text.toString().isBlank()){
+            accept = false
+            message = "${message}摘要が入力されていません．"
+        }
+        if(content.isBlank() || content.contentEquals("0")){
+            accept = false
+            if(!message.isBlank()){
+                message = "${message}\n"
+            }
+            message = "${message}金額が入力されていません．"
+        }
+        if (accept) {
+            val calendar: Calendar = Calendar.getInstance()
+            mListener?.onSave(calendar.timeInMillis,
+                    formula_text_view.text.toString().toLong(),
+                    content_text_view.text.toString(),
+                    str)
+        }else{
+            AlertDialog.Builder(activity)
+                    .setMessage(message)
+                    .setPositiveButton("OK", null)
+                    .show()
         }
     }
 

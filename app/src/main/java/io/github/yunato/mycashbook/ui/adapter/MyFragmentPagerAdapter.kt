@@ -8,7 +8,7 @@ import io.github.yunato.mycashbook.ui.fragment.RecordListFragment
 
 class MyFragmentPagerAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm) {
 
-    val tabTitles: Array<CharSequence> = arrayOf("タブ1", "タブ2")
+    val tabTitles: Array<CharSequence> = arrayOf("入力", "記録")
 
     override fun getPageTitle(position: Int): CharSequence = tabTitles[position]
 

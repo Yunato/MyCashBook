@@ -31,7 +31,7 @@ class RecordDBAdapter(mContext: Context) {
         val cursor: Cursor = db.rawQuery(sql, null)
         val result: MutableList<Record> = mutableListOf()
         try {
-            if (cursor.moveToNext()) {
+            while (cursor.moveToNext()) {
                 result.add(Record(
                         cursor.getLong(cursor.getColumnIndex(helper.FIELD_ID)),
                         cursor.getLong(cursor.getColumnIndex(helper.FIELD_DATE)),

@@ -32,7 +32,7 @@ class RecordDBAdapter(mContext: Context) {
         val result: MutableList<Record> = mutableListOf()
         try {
             while (cursor.moveToNext()) {
-                result.add(Record(
+                result.add(0, Record(
                         cursor.getLong(cursor.getColumnIndex(helper.FIELD_ID)),
                         cursor.getLong(cursor.getColumnIndex(helper.FIELD_DATE)),
                         cursor.getLong(cursor.getColumnIndex(helper.FIELD_MONEY)),

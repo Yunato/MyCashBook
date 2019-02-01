@@ -3,7 +3,7 @@
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="action_bar_elevation_material">4dp</dimen>
     <dimen name="text_margin">10dp</dimen>
-    <dimen name="card_view_margin">10dp</dimen>
+    <dimen name="card_view_margin">5dp</dimen>
     <dimen name="card_view_in_margin">5dp</dimen>
     <dimen name="card_view_radius">10dp</dimen>
 </resources>

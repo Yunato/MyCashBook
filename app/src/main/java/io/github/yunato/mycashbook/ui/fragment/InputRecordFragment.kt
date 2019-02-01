@@ -107,9 +107,13 @@ class InputRecordFragment : Fragment() {
         if (accept) {
             val calendar: Calendar = Calendar.getInstance()
             mListener?.onSave(calendar.timeInMillis,
-                    formula_text_view.text.toString().toLong(),
+                    formula_text_view.text.toString().replace(",","").toLong(),
                     content_text_view.text.toString(),
                     str)
+            content = ""
+            formula_text_view.text = ""
+            content_text_view.setText("")
+
         }else{
             AlertDialog.Builder(activity)
                     .setMessage(message)

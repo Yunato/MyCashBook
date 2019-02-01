@@ -23,13 +23,14 @@ class MainActivity : AppCompatActivity()
     lateinit private var recordDB: RecordDBAdapter
     val REQUEST_MONEY: Int = 1
     val PREF_MONEY: String = "money"
+    var money: Long = -1L
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         val prefer: SharedPreferences = getSharedPreferences("money", Context.MODE_PRIVATE)
-        val money: Long = prefer.getLong(PREF_MONEY, -1)
+        money = prefer.getLong(PREF_MONEY, -1L)
         if (money == -1L) {
             MoneyActivity.intent(applicationContext).let { startActivityForResult(it, REQUEST_MONEY) }
         } else {
@@ -44,7 +45,7 @@ class MainActivity : AppCompatActivity()
             RecordContent.ITEMs.add(record)
         }
 
-        val adapter: MyFragmentPagerAdapter = MyFragmentPagerAdapter(supportFragmentManager)
+        val adapter: MyFragmentPagerAdapter = MyFragmentPagerAdapter(supportFragmentManager, money)
         val viewPager = findViewById(R.id.view_pager) as ViewPager
         viewPager.offscreenPageLimit = 2
         viewPager.adapter = adapter
@@ -55,6 +56,15 @@ class MainActivity : AppCompatActivity()
 
     override fun onSave(date: Long, money: Long, content: String, fluctuation: String) {
         recordDB.addRecord(date, money, content, fluctuation)
+        if (fluctuation.contentEquals(getString(R.string.plus_button))){
+            this.money += money
+        } else if (fluctuation.contentEquals(getString(R.string.minus_button))){
+            this.money -= money
+        }
+        val prefer: SharedPreferences = getSharedPreferences("money", Context.MODE_PRIVATE)
+        val editor: SharedPreferences.Editor = prefer.edit()
+        editor.putLong(PREF_MONEY, this.money)
+        editor.apply()
     }
 
     override fun onSelect(item: Record) {
@@ -64,7 +74,7 @@ class MainActivity : AppCompatActivity()
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == REQUEST_MONEY && resultCode == Activity.RESULT_OK) {
             if (data != null) {
-                val money: Long = data.getLongExtra(MoneyActivity.EXTRA_MONEY, -1)
+                money = data.getLongExtra(MoneyActivity.EXTRA_MONEY, -1L)
                 val prefer: SharedPreferences = getSharedPreferences("money", Context.MODE_PRIVATE)
                 val editor: SharedPreferences.Editor = prefer.edit()
                 editor.putLong(PREF_MONEY, money)

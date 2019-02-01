@@ -27,7 +27,13 @@ class MyRecordRecyclerViewAdapter(private val mValues: List<Record>, private val
         holder.mDateView.text = sdf.format(date)
         holder.mContentView.text = mValues[position].content
         holder.mFluctuationView.text = mValues[position].fluctuation
-        holder.mMoneyView.text = "${mValues[position].money}円"
+        val strMoney: String = if(mValues[position].fluctuation.contentEquals(
+                holder.mView.context.getString(R.string.plus_button))){
+            "+${mValues[position].money}円"
+        }else{
+            "-${mValues[position].money}円"
+        }
+        holder.mMoneyView.text = strMoney
 
         holder.mView.setOnClickListener {
             mListener?.onSelect(mValues[position])

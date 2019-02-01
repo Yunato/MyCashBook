@@ -22,6 +22,7 @@
                 android:hint="@string/content_hint_text"
                 android:layout_weight="1"
                 android:maxLines="1"
+                android:inputType="text"
                 android:text="@string/formula_text"
                 android:textSize="24sp"/>
 

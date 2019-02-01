@@ -21,6 +21,7 @@ class MainActivity : AppCompatActivity()
         , RecordListFragment.OnSelectListener {
 
     lateinit private var recordDB: RecordDBAdapter
+    lateinit var adapter: MyFragmentPagerAdapter
     val REQUEST_MONEY: Int = 1
     val PREF_MONEY: String = "money"
     var money: Long = -1L
@@ -45,7 +46,7 @@ class MainActivity : AppCompatActivity()
             RecordContent.ITEMs.add(record)
         }
 
-        val adapter: MyFragmentPagerAdapter = MyFragmentPagerAdapter(supportFragmentManager, money)
+        adapter = MyFragmentPagerAdapter(supportFragmentManager, money)
         val viewPager = findViewById(R.id.view_pager) as ViewPager
         viewPager.offscreenPageLimit = 2
         viewPager.adapter = adapter
@@ -55,16 +56,23 @@ class MainActivity : AppCompatActivity()
     }
 
     override fun onSave(date: Long, money: Long, content: String, fluctuation: String) {
-        recordDB.addRecord(date, money, content, fluctuation)
-        if (fluctuation.contentEquals(getString(R.string.plus_button))){
+        val id: Long = recordDB.addRecord(date, money, content, fluctuation)
+        if (fluctuation.contentEquals(getString(R.string.plus_button))) {
             this.money += money
-        } else if (fluctuation.contentEquals(getString(R.string.minus_button))){
+        } else if (fluctuation.contentEquals(getString(R.string.minus_button))) {
             this.money -= money
         }
         val prefer: SharedPreferences = getSharedPreferences("money", Context.MODE_PRIVATE)
         val editor: SharedPreferences.Editor = prefer.edit()
         editor.putLong(PREF_MONEY, this.money)
         editor.apply()
+
+        RecordContent.ITEMs.add(0, RecordContent.createRecord(
+                id, date, money, content, fluctuation))
+        val baseFragment = adapter.baseFragment
+        baseFragment?.refreshList(this.money.toString())
+        val listFragment = adapter.listFragment as RecordListFragment
+        listFragment.refreshList()
     }
 
     override fun onSelect(item: Record) {

@@ -16,6 +16,7 @@ import io.github.yunato.mycashbook.ui.adapter.MyRecordRecyclerViewAdapter
 class RecordListFragment : Fragment() {
 
     private var mListener: OnSelectListener? = null
+    lateinit var recyclerView: RecyclerView
 
     companion object {
 
@@ -34,7 +35,7 @@ class RecordListFragment : Fragment() {
 
         if (view is RecyclerView) {
             val context = view.getContext()
-            val recyclerView = view
+            recyclerView = view
             recyclerView.layoutManager = LinearLayoutManager(context)
             recyclerView.adapter = MyRecordRecyclerViewAdapter(RecordContent.ITEMs, mListener)
         }
@@ -49,6 +50,10 @@ class RecordListFragment : Fragment() {
         } else {
             throw RuntimeException(context!!.toString() + " must implement OnListFragmentInteractionListener")
         }
+    }
+
+    fun refreshList() {
+        recyclerView.adapter.notifyDataSetChanged()
     }
 
     override fun onDetach() {

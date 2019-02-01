@@ -7,6 +7,7 @@ import android.database.sqlite.SQLiteDatabase
 import io.github.yunato.mycashbook.model.dao.DB_TABLE_NAME
 import io.github.yunato.mycashbook.model.dao.RecordDatabaseOpenHelper
 import io.github.yunato.mycashbook.model.dto.Record
+import io.github.yunato.mycashbook.model.dto.RecordContent
 
 class RecordDBAdapter(mContext: Context) {
 
@@ -17,13 +18,13 @@ class RecordDBAdapter(mContext: Context) {
         db = helper.writableDatabase
     }
 
-    fun addRecord(date: Long, money: Long, content: String, fluctuation: String) {
+    fun addRecord(date: Long, money: Long, content: String, fluctuation: String): Long {
         val values: ContentValues = ContentValues()
         values.put(helper.FIELD_DATE, date)
         values.put(helper.FIELD_MONEY, money)
         values.put(helper.FIELD_CONTENT, content)
         values.put(helper.FIELD_FLUCTUATION, fluctuation)
-        db.insertOrThrow(DB_TABLE_NAME, null, values)
+        return db.insertOrThrow(DB_TABLE_NAME, null, values)
     }
 
     fun getRecords(): MutableList<Record> {
@@ -32,7 +33,7 @@ class RecordDBAdapter(mContext: Context) {
         val result: MutableList<Record> = mutableListOf()
         try {
             while (cursor.moveToNext()) {
-                result.add(0, Record(
+                result.add(0, RecordContent.createRecord(
                         cursor.getLong(cursor.getColumnIndex(helper.FIELD_ID)),
                         cursor.getLong(cursor.getColumnIndex(helper.FIELD_DATE)),
                         cursor.getLong(cursor.getColumnIndex(helper.FIELD_MONEY)),

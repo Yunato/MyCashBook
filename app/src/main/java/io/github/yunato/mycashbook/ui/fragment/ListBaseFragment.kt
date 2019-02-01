@@ -12,6 +12,7 @@ import kotlinx.android.synthetic.main.fragment_list_base.*
 class ListBaseFragment : Fragment() {
 
     private var strMoney: String = "0"
+    var listFragment: RecordListFragment? = null
 
     companion object {
 
@@ -29,7 +30,7 @@ class ListBaseFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        if (arguments != null){
+        if (arguments != null) {
             strMoney = "${arguments.getLong(ARGV_MONEY)}"
         }
     }
@@ -43,8 +44,12 @@ class ListBaseFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         money_text_view.text = "${strMoney} 円"
-        val fragment: RecordListFragment = RecordListFragment()
-        childFragmentManager.beginTransaction().replace(R.id.container_fragment, fragment).commit()
+        listFragment = RecordListFragment()
+        childFragmentManager.beginTransaction().replace(R.id.container_fragment, listFragment).commit()
+    }
+
+    fun refreshList(strMoney: String) {
+        money_text_view.text = "${strMoney} 円"
     }
 
     override fun onAttach(context: Context?) {

@@ -1,2 +1,2 @@
 # MyCashBook
-現在の所持金，支出，収入を管理するためのアプリケーション．
+This application manages user's money, expenses and income.
